@@ -1,7 +1,7 @@
 const natural = require('natural');
 const stemmer = natural.PorterStemmer;
 
-console.log('\n1. Stemming');
+console.log('\n2. Stemming');
 
 console.log(stemmer.stem('mangoes'));
 console.log(stemmer.stem('hearing'));
