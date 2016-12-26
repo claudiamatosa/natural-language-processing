@@ -1,0 +1,2 @@
+require('./stemming');
+require('./pluralizing');

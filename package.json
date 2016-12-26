@@ -1,0 +1,14 @@
+{
+  "name": "natural-language-processing",
+  "version": "1.0.0",
+  "description": "Following the videos at egghead.io",
+  "main": "src/index.js",
+  "author": "Claudia Matosa",
+  "license": "MIT",
+  "scripts": {
+    "print": "node src/index.js"
+  },
+  "dependencies": {
+    "natural": "^0.4.0"
+  }
+}
