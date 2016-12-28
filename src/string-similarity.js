@@ -14,7 +14,6 @@ console.log('JaroWinkler:', '1 vs 3:', natural.JaroWinklerDistance(string1, stri
 console.log('Levenshtein:', '1 vs 2:', natural.LevenshteinDistance(string1, string2));
 console.log('Levenshtein:', '1 vs 3:', natural.LevenshteinDistance(string1, string3));
 
-
 // Number of bigrams in common divided by total number of bigrams
 console.log('DiceCoefficient:', '1 vs 2:', natural.DiceCoefficient(string1, string2));
 console.log('DiceCoefficient:', '1 vs 3:', natural.DiceCoefficient(string1, string3));
