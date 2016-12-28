@@ -1,7 +1,7 @@
 const natural = require('natural');
 const classifier = new natural.BayesClassifier();
 
-console.log('\n7. Categorize text');
+console.log('\n7. Classify text');
 
 const trainingData = [
   {text: 'RE: Canadian drugs now on sale', label: 'spam'},

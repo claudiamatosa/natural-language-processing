@@ -3,4 +3,5 @@ require('./pluralizing');
 require('./find-sequences');
 require('./tag-speech');
 require('./string-similarity');
-require('./categorize-text');
+require('./classify-text');
+require('./classify-json-data');
