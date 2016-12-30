@@ -1,19 +1,28 @@
 const fs = require('fs');
 const path = require('path');
 const natural = require('natural');
-const { dataFolder } = require('./settings');
-const classifier = new natural.LogisticRegressionClassifier();
+const { dataFolder } = require('../settings');
 
-console.log('\n8. Classify json data');
+const settings = {
+  classifierLocation: path.join(__dirname, '..', 'data', 'saved-classifier.json'),
+  // Use 'BayesClassifier' for less complex comparisons
+  classifierType: 'LogisticRegressionClassifier',
+}
 
-try {
-  const trainingData = JSON.parse(
-    fs.readFileSync(path.join(dataFolder, 'training_data.json'))
-  );
+const classifier = new natural[settings.classifierType]();
 
-  train(trainingData);
-} catch (e) {
-  console.log(e);
+function run() {
+  console.log('\n8. Classify json data');
+
+  try {
+    const trainingData = JSON.parse(
+      fs.readFileSync(path.join(dataFolder, 'training_data.json'))
+    );
+
+    train(trainingData);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 function train(data) {
@@ -40,7 +49,7 @@ function loadTestData() {
 
     testClassifier(testData);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
@@ -58,4 +67,21 @@ function testClassifier(data) {
   });
 
   console.log('Correct percentage:', numCorrect / data.length);
+
+  saveClassifier(classifier);
 }
+
+function saveClassifier(classifier) {
+  classifier.save(settings.classifierLocation, (error, classifier) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.info('Classifier saved');
+    }
+  });
+}
+
+module.exports = {
+  run,
+  settings,
+};

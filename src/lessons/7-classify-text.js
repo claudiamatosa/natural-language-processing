@@ -1,8 +1,6 @@
 const natural = require('natural');
 const classifier = new natural.BayesClassifier();
 
-console.log('\n7. Classify text');
-
 const trainingData = [
   {text: 'RE: Canadian drugs now on sale', label: 'spam'},
   {text: 'Earn more from home', label: 'spam'},
@@ -21,19 +19,27 @@ const testData = [
   {text: 'Hang out with someone near you', label: 'spam'}
 ];
 
-// Train classifier to categorise text
-trainingData.forEach(item => {
-  classifier.addDocument(item.text, item.label);
-});
+function run() {
+  console.log('\n7. Classify text');
 
-classifier.train();
+  // Train classifier to categorise text
+  trainingData.forEach(item => {
+    classifier.addDocument(item.text, item.label);
+  });
 
-// Print classifications
-testData.forEach(item => {
-  console.log(
-    item.text,
-    `Label: ${classifier.classify(item.text)}`,
-    classifier.getClassifications(item.text),
-    '\n'
-  );
-});
+  classifier.train();
+
+  // Print classifications
+  testData.forEach(item => {
+    console.log(
+      item.text,
+      `Label: ${classifier.classify(item.text)}`,
+      classifier.getClassifications(item.text),
+      '\n'
+    );
+  });
+}
+
+module.exports = {
+  run,
+};
