@@ -7,12 +7,14 @@ const files = fs.readdir(lessonsFolder, (error, files) => {
   if (error) {
     console.error(error);
   } else {
-    files.forEach(file => {
+    const sortedFiles = files.sort((a, b) => sortFilesAscending(a, b));
+
+    sortedFiles.forEach(file => {
       if (isFile(file)) {
         const lesson = require(path.join(lessonsFolder, file));
 
         if (typeof lesson.run !== 'function') {
-          throw new Error('run method must be implemented in each lesson');
+          throw new Error(`run method not implemented in lesson ${file}`);
         }
 
         lesson.run();
@@ -20,6 +22,23 @@ const files = fs.readdir(lessonsFolder, (error, files) => {
     });
   }
 });
+
+function sortFilesAscending(a, b) {
+  const aNumber = getLessonNumber(a);
+  const bNumber = getLessonNumber(b);
+
+  if (aNumber < bNumber) {
+    return -1;
+  } else if (aNumber > bNumber) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function getLessonNumber(fileName) {
+  return parseInt(fileName.split('-')[0]);
+}
 
 function isFile(file) {
   const location = path.join(lessonsFolder, file);

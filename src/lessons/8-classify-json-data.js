@@ -1,7 +1,6 @@
-const fs = require('fs');
 const path = require('path');
 const natural = require('natural');
-const { dataFolder } = require('../settings');
+const { getDataFile } = require('../utilities');
 
 const settings = {
   classifierLocation: path.join(__dirname, '..', 'data', 'saved-classifier.json'),
@@ -15,9 +14,7 @@ function run() {
   console.log('\n8. Classify json data');
 
   try {
-    const trainingData = JSON.parse(
-      fs.readFileSync(path.join(dataFolder, 'training_data.json'))
-    );
+    const trainingData = getDataFile('training-data.json');
 
     train(trainingData);
   } catch (e) {
@@ -43,9 +40,7 @@ function loadTestData() {
   console.log('Loading test data');
 
   try {
-    const testData = JSON.parse(
-      fs.readFileSync(path.join(dataFolder, 'test_data.json'))
-    );
+    const testData = getDataFile('test-data.json');
 
     testClassifier(testData);
   } catch (e) {
