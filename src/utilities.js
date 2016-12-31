@@ -3,7 +3,7 @@ const path = require('path');
 const { dataFolder } = require('./settings');
 
 function getDataFile(name) {
-  const data = fs.readFileSync(path.join(dataFolder, name));
+  const data = fs.readFileSync(path.join(dataFolder, name), 'utf-8');
 
   if (data && getExtension(name) === 'json') {
     return JSON.parse(data);

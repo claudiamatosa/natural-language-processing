@@ -23,8 +23,6 @@ function getTrieWithCupcakes() {
   return trie;
 }
 
-run();
-
 module.exports = {
   run,
 };
